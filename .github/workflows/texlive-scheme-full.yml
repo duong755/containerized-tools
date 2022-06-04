@@ -1,22 +1,25 @@
-name: "Docker images for TeX Live: teTeX (more than medium, but nowhere near full)"
+name: "Docker images for TeX Live: full (everything)"
 
 on:
   push:
     branches:
       - master
+    paths:
+      - .github/workflows/texlive-scheme-full.yml
+      - texlive/**
   schedule:
     - cron: "0 0 1 * *"
 
 jobs:
-  texlive-tetex:
+  texlive-scheme-full:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: "Build image"
-        run: cd texlive && docker build --build-arg SCHEME=tetex --tag ngoquangduong/texlive:tetex .
+        run: cd texlive && docker build --build-arg SCHEME=scheme-full --tag ngoquangduong/texlive:scheme-full .
       - name: "Publish image to Docker Hub"
         env:
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         run: |
           echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username ngoquangduong --password-stdin
-          docker push ngoquangduong/texlive:tetex
+          docker push ngoquangduong/texlive:scheme-full

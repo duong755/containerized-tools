@@ -1,22 +1,25 @@
-name: "Docker images for TeX Live: small (basic + xetex, metapost, a few languages)"
+name: "Docker images for TeX Live: medium (small + more packages and languages)"
 
 on:
   push:
     branches:
       - master
+    paths:
+      - .github/workflows/texlive-medium.yml
+      - texlive/**
   schedule:
     - cron: "0 0 1 * *"
 
 jobs:
-  texlive-small:
+  texlive-medium:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: "Build image"
-        run: cd texlive && docker build --build-arg SCHEME=small --tag ngoquangduong/texlive:small .
+        run: cd texlive && docker build --build-arg SCHEME=medium --tag ngoquangduong/texlive:medium .
       - name: "Publish image to Docker Hub"
         env:
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         run: |
           echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username ngoquangduong --password-stdin
-          docker push ngoquangduong/texlive:small
+          docker push ngoquangduong/texlive:medium

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - .github/workflows/texlive-minimal.yml
+      - texlive/**
   schedule:
     - cron: "0 0 1 * *"
 

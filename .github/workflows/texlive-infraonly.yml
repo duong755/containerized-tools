@@ -1,22 +1,25 @@
-name: "Docker images for TeX Live: medium (small + more packages and languages)"
+name: "Docker images for TeX Live: infrastructure-only (no TeX at all)"
 
 on:
   push:
     branches:
       - master
+    paths:
+      - .github/workflows/texlive-infraonly.yml
+      - texlive/**
   schedule:
     - cron: "0 0 1 * *"
 
 jobs:
-  texlive-medium:
+  texlive-infraonly:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: "Build image"
-        run: cd texlive && docker build --build-arg SCHEME=medium --tag ngoquangduong/texlive:medium .
+        run: cd texlive && docker build --build-arg SCHEME=infraonly --tag ngoquangduong/texlive:infraonly .
       - name: "Publish image to Docker Hub"
         env:
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         run: |
           echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username ngoquangduong --password-stdin
-          docker push ngoquangduong/texlive:medium
+          docker push ngoquangduong/texlive:infraonly
