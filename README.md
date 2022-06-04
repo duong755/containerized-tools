@@ -39,14 +39,7 @@ To use these images, you are gonna need Docker installed on your machine (obviou
 For example, you want to compile a `.tex` file with `pdflatex`, you can use:
 
 ```shell
-docker run --rm ngoquangduong/texlive:basic pdflatex \
-    -synctex=1 \
-    -interaction=nonstopmode \
-    -recorder \
-    -file-line-error \
-    -shell-escape \
-    -halt-on-error \
-    main.tex
+docker run --rm --workdir /tmp --mount type=bind,src=$(pwd),target=/tmp ngoquangduong/texlive:scheme-full pdflatex main.tex
 ```
 
-It is possible, since `pdflatex` is available in TeX Live basic scheme.
+Warning: `TeX Live (scheme-full)` is extremely large.
