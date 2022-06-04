@@ -1,0 +1,22 @@
+name: "Docker images for TeX Live: ConTeXt"
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  texlive-context:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Build image"
+        run: cd texlive && docker build --build-arg SCHEME=context --tag ngoquangduong/texlive:context .
+      - name: "Publish image to Docker Hub"
+        env:
+          DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        run: |
+          echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username ngoquangduong --password-stdin
+          docker push ngoquangduong/texlive:context
