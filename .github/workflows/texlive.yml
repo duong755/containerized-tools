@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "Build image"
-        run: cd texlive && docker build --build-arg SCHEME=infraonly ngoquangduong/texlive:infraonly .
+        run: cd texlive && docker build --build-arg SCHEME=infraonly --tag ngoquangduong/texlive:infraonly .
       - name: "Publish image to Docker Hub"
         env:
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
