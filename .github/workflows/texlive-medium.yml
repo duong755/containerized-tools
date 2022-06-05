@@ -1,4 +1,4 @@
-name: "Docker images for TeX Live: medium (small + more packages and languages)"
+name: "Docker image for TeX Live: medium (small + more packages and languages)"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - .github/workflows/texlive-medium.yml
       - texlive/**
   schedule:
-    - cron: "0 0 1 * *"
+    - cron: "0 0 1,8,15,23 * *"
 
 jobs:
   texlive-medium:

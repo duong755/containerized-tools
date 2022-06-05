@@ -1,4 +1,4 @@
-name: "Docker images for TeX Live: teTeX (more than medium, but nowhere near full)"
+name: "Docker image for TeX Live: teTeX (more than medium, but nowhere near full)"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - .github/workflows/texlive-tetex.yml
       - texlive/**
   schedule:
-    - cron: "0 0 1 * *"
+    - cron: "0 0 1,8,15,23 * *"
 
 jobs:
   texlive-tetex:
