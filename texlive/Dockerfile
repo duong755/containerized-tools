@@ -1,8 +1,10 @@
-FROM ubuntu:20.04
+FROM alpine:3.16
 
 ARG SCHEME=infraonly
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y wget perl
+RUN apk update && apk upgrade
+
+RUN apk add --no-cache wget perl
 
 RUN wget -qO /tmp/install-tl-unx.tar.gz http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
