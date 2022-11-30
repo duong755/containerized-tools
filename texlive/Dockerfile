@@ -16,4 +16,8 @@ RUN cd /tmp/install-tl-latest/install-tl-* && \
     chmod +x ./install-tl && \
     ./install-tl --scheme=${SCHEME} --profile=/tmp/install-tl-latest/installation.profile
 
+RUN rm -rf /tmp/install-tl-unx.tar.gz /tmp/install-tl-latest
+
 ENV PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
+
+RUN tlmgr init-usertree
