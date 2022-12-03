@@ -38,7 +38,7 @@ To use these images, you are gonna need Docker installed on your machine (obviou
 
 For example, you want to compile a `.tex` file with `pdflatex`, you can use:
 
-```shell
+```bash
 docker run --rm --workdir /tmp --mount type=bind,src=$(pwd),target=/tmp ngoquangduong/texlive:scheme-full pdflatex main.tex
 ```
 
