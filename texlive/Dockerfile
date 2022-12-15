@@ -6,7 +6,7 @@ RUN apk update && apk upgrade
 
 RUN apk add --no-cache wget perl
 
-RUN wget --retry-connrefused --tries=5 -qO /tmp/install-tl-unx.tar.gz http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+RUN wget --retry-connrefused --tries=50 --waitretry=60 -qO /tmp/install-tl-unx.tar.gz http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
 RUN mkdir -p /tmp/install-tl-latest && tar -xzf /tmp/install-tl-unx.tar.gz -C /tmp/install-tl-latest
 
