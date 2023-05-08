@@ -18,4 +18,4 @@ RUN cd /tmp/install-tl-latest/install-tl-* && \
 
 RUN rm -rf /tmp/install-tl-unx.tar.gz /tmp/install-tl-latest
 
-ENV PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
+ENV PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
