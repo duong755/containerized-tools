@@ -8,7 +8,7 @@ on:
       - .github/workflows/texlive-tetex.yml
       - texlive/**
   schedule:
-    - cron: "0 0 1,8,15,23 * *"
+    - cron: "0 0 27 * *"
 
 jobs:
   texlive-tetex:

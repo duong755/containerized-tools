@@ -8,7 +8,7 @@ on:
       - .github/workflows/texlive-scheme-full.yml
       - texlive/**
   schedule:
-    - cron: "0 0 1,8,15,23 * *"
+    - cron: "0 0 25 * *"
 
 jobs:
   texlive-scheme-full:
