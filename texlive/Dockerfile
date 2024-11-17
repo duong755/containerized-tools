@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.20
 
 ARG SCHEME=infraonly
 
@@ -13,9 +13,8 @@ RUN mkdir -p /tmp/install-tl-latest && tar -xzf /tmp/install-tl-unx.tar.gz -C /t
 COPY ./ /tmp/install-tl-latest
 
 RUN cd /tmp/install-tl-latest/install-tl-* && \
-    chmod +x ./install-tl && \
-    ./install-tl --scheme=${SCHEME} --profile=/tmp/install-tl-latest/installation.profile
+    perl ./install-tl --scheme=${SCHEME} --profile=/tmp/install-tl-latest/installation.profile
 
 RUN rm -rf /tmp/install-tl-unx.tar.gz /tmp/install-tl-latest
 
-ENV PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
+ENV PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
